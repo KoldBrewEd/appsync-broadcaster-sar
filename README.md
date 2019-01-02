@@ -76,4 +76,4 @@ Click on DEPLOY from the [application page](https://serverlessrepo.aws.amazon.co
 
 Access the app from multiple devices or send the link to friends to test Serverless GraphQL real-time subscriptions.
 
-For a version deployed end to end with the AWS Amplify CLI using a GraphQL Transformer that will configure a DynamoDB NoSQL table to save the broadcasted messages (this version uses direct PubSub with Local Resolvers, no messages are saved) check my other repo https://github.com/awsed/broadcaster
+>*For a version deployed end to end with the AWS Amplify CLI using a GraphQL Transformer that will configure a DynamoDB NoSQL table to save the broadcasted messages (this version uses direct PubSub with Local Resolvers, no messages are saved) check my other repo https://github.com/awsed/broadcaster*

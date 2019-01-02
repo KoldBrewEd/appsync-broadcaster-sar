@@ -1,6 +1,8 @@
 ## Broadcaster
 
-Simple demo that showcases Serverless GraphQL real-time subscriptions powered by AWS AppSync.
+Simple demo that broadcasts messages to multiple clients using Serverless GraphQL real-time subscriptions powered by AWS AppSync.
+
+The API access is authenticated via API Key valid for 7 days. The demo takes advantage of GraphQL Subscriptions and Local Resolvers so instead of calling a remote data source, the local resolver will just forward the result to all clients subscribed to the call (PubSub). Messages are not saved or persisted anywhere.
 
 ![Screnshot](/media/broadcaster.png)
 
@@ -66,3 +68,4 @@ Click on DEPLOY from the [application page](https://serverlessrepo.aws.amazon.co
 3. Connect your repository as per the instructions on https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html
 4. Deploy and access your app (xxxxxxxx.amplifyapp.com)
 
+Access the app from multiple devices or send the link to friends to test Serverless GraphQL real-time subscriptions

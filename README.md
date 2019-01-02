@@ -59,7 +59,7 @@ Click on DEPLOY from the [application page](https://serverlessrepo.aws.amazon.co
     amplify add hosting
     ``` 
 
-    from the project's root folder and follow the prompts to create an S3 bucket (DEV) and/or a CloudFront distribution (PROD). More info on https://aws-amplify.github.io/docs/cli/hosting?sdk=js.
+    from the project's root folder and follow the prompts to create an S3 bucket (DEV) and/or a CloudFront distribution (PROD). More info on the [Amplify CLI docs](https://aws-amplify.github.io/docs/cli/hosting?sdk=js).
 
 4. Build, deploy, upload and publish the application with a single command:
 

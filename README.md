@@ -1,4 +1,4 @@
-## Broadcaster
+## AppSync Broadcaster
 
 Simple demo that broadcasts messages to multiple clients using Serverless GraphQL real-time subscriptions powered by AWS AppSync.
 
@@ -53,7 +53,11 @@ Click on DEPLOY from the [application page](https://serverlessrepo.aws.amazon.co
     amplify init
     ```
 
-3. Execute `amplify add hosting` from the project's root folder and follow the prompts to create an S3 bucket (DEV) and/or a CloudFront distribution (PROD).
+3. Execute 
+
+    ```amplify add hosting``` 
+
+from the project's root folder and follow the prompts to create an S3 bucket (DEV) and/or a CloudFront distribution (PROD). More info on https://aws-amplify.github.io/docs/cli/hosting?sdk=js.
 
 4. Build, deploy, upload and publish the application with a single command:
 
@@ -63,7 +67,7 @@ Click on DEPLOY from the [application page](https://serverlessrepo.aws.amazon.co
 
 ### Hosting with the [Amplify Console](https://aws.amazon.com/amplify/console/)
 
-1. Fork the repository https://github.com/awsed/appsync-broadcaster-sar in your own GitHub account
+1. Fork the repository https://github.com/awsed/appsync-broadcaster-sar to your own GitHub account
 2. Commit the modified `src/App.js` file with the valid AppSync resources to the forked repository
 3. Connect your repository as per the instructions on https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html
 4. Deploy and access your app (xxxxxxxx.amplifyapp.com)

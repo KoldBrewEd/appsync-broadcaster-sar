@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Description: AppSync Broadcaster
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: appsync-broadcaster
+    Description: Simple Serverless GraphQL Real-Time Demo powered by AppSync and Serverless Application Repository
+    Author: awsed
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE.txt
+    ReadmeUrl: README.md
+    Labels: ['appsync', 'graphql', 'real-time', 'react']
+    HomepageUrl: https://github.com/awsed/appsync-broadcaster-sar
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/awsed/appsync-broadcaster-sar
+Outputs:
+  ApiId:
+    Description: Unique AWS AppSync GraphQL API Identifier
+    Value: !GetAtt broadcasterApi.ApiId
+  ApiUrl:
+    Description: The Endpoint URL of your GraphQL API
+    Value: !GetAtt broadcasterApi.GraphQLUrl
+  Region:
+    Description: Region where the resources are deployed
+    Value: !Ref AWS::Region
+  ApiKey:
+    Description: The API Key to access your API
+    Value: !GetAtt apiKey.ApiKey
+Resources:
+  broadcasterApi:
+    Type: "AWS::AppSync::GraphQLApi"
+    Properties:
+      Name: "BroadcasterSAR"
+      AuthenticationType: "API_KEY"
+  apiKey:
+    Type: "AWS::AppSync::ApiKey"
+    Properties:
+      ApiId: !GetAtt broadcasterApi.ApiId
+  pubSubDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      Type: NONE
+      Description: "Local Resolver"
+      ApiId: !GetAtt broadcasterApi.ApiId
+      Name: PubSub
+  schema:
+    Type: "AWS::AppSync::GraphQLSchema"
+    Properties:
+      ApiId: !GetAtt broadcasterApi.ApiId
+      Definition: |
+        schema {
+          query: Query
+          mutation: Mutation
+          subscription: Subscription
+        } 
+
+        type Message {
+          message: String!
+        }
+
+        type Mutation {
+          sendMessage(message: String!): Message
+        }
+
+        type Query {
+          getMessage: Message
+        }
+
+        type Subscription {
+          subscribeToMessage: Message
+            @aws_subscribe(mutations: ["sendMessage"])
+        }
+  pubSubResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt broadcasterApi.ApiId
+      TypeName: "Mutation"
+      FieldName: "sendMessage"
+      DataSourceName: !GetAtt pubSubDataSource.Name
+      RequestMappingTemplate: |
+        {
+            "version": "2017-02-28",
+            "payload": {
+                "message": "${context.arguments.message}",
+                "sentAt": "$util.time.nowISO8601()"
+            }
+        }
+      ResponseMappingTemplate: |
+        $util.toJson($context.result)
+
+        

@@ -11,16 +11,15 @@ Amplify.configure({
   'aws_appsync_apiKey': 'da2-xxxxxxxxxxxxxxxxxxxxxxxxxx',
 });
 
-const createMessage = `mutation createMessage($message: String!){
-  createMessage(input:{message:$message}) {
-    id
+const sendMessage = `mutation sendMessage($message: String!) {
+  sendMessage(message: $message) {
+    __typename
     message
   }
-}
-`;
+}`;
 
-const onCreateMessage = `subscription onCreateMessage {
-  onCreateMessage {
+const subscribeToMessage = `subscription subscribeToMessage {
+  subscribeToMessage {
     __typename
     message
   }
@@ -40,11 +39,11 @@ class App extends Component {
   }
 
   async componentDidMount(){
-    this.subscription = API.graphql(graphqlOperation(onCreateMessage)).subscribe({
+    this.subscription = API.graphql(graphqlOperation(subscribeToMessage)).subscribe({
       next: (event) => {
           console.log("Subscription: "+event.value.data);
           this.setState({display: true});
-          this.setState({message: event.value.data.onCreateMessage.message});
+          this.setState({message: event.value.data.subscribeToMessage.message});
         }
     });
   }
@@ -59,7 +58,7 @@ class App extends Component {
     const message = {
       "message":this.state.value
     }
-    await API.graphql(graphqlOperation(createMessage, message));
+    await API.graphql(graphqlOperation(sendMessage, message));
   }
 
   render() {

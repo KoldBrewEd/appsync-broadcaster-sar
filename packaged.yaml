@@ -3,20 +3,21 @@ Description: AppSync Broadcaster
 Metadata:
   AWS::ServerlessRepo::Application:
     Author: awsed
-    Description: Simple Serverless GraphQL Real-Time Demo powered by AppSync and Serverless
-      Application Repository
+    Description: Simple app that broadcasts messages to multiple clients using Serverless
+      GraphQL real-time subscriptions powered by AWS AppSync
     HomepageUrl: https://github.com/awsed/appsync-broadcaster-sar
     Labels:
     - appsync
     - graphql
     - real-time
     - react
-    LicenseUrl: s3://serverlessapprepository/0cc1a9e33dd7a6eb0b79927742cf005c
+    - amplify
+    LicenseUrl: s3://serverlessapprepository/3849faa42af60828f036a47d682ef6de
     Name: appsync-broadcaster
-    ReadmeUrl: s3://serverlessapprepository/ec5e351d35d9ca34d77f43572929e6b3
+    ReadmeUrl: s3://serverlessapprepository/2910b6baaea0162e039f4e3eb04e45b4
     SemanticVersion: 1.0.0
     SourceCodeUrl: https://github.com/awsed/appsync-broadcaster-sar
-    SpdxLicenseId: Apache-2.0
+    SpdxLicenseId: MIT
 Outputs:
   ApiId:
     Description: Unique AWS AppSync GraphQL API Identifier

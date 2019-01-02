@@ -1,6 +1,6 @@
 ## AppSync Broadcaster
 
-Simple demo that broadcasts messages to multiple clients using Serverless GraphQL real-time subscriptions powered by AWS AppSync.
+Simple app that broadcasts messages to multiple clients using Serverless GraphQL real-time subscriptions powered by AWS AppSync.
 
 The API access is authenticated via API Key valid for 7 days. The demo takes advantage of GraphQL Subscriptions and Local Resolvers so instead of calling a remote data source, the local resolver will just forward the result to all clients subscribed to the call (PubSub). Messages are not saved or persisted anywhere.
 
